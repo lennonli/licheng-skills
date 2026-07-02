@@ -1,0 +1,4 @@
+interface:
+  display_name: "CNIPA Patent Evidence Archive"
+  short_description: "归档 CNIPA 专利审查页面证据 PDF"
+  default_prompt: "Use $cnipa-patent-evidence-archive to export and organize CNIPA patent review pages as evidence PDFs."
