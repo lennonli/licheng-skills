@@ -1,0 +1,4 @@
+interface:
+  display_name: "CNIPA Trademark Evidence Archive"
+  short_description: "归档 CNIPA 商标详情和流程证据 PDF 文件"
+  default_prompt: "Use $cnipa-trademark-evidence-archive to export and organize CNIPA trademark detail and process pages as evidence PDFs."
