@@ -1,0 +1,4 @@
+playwright
+pypdf
+opencv-python
+numpy
