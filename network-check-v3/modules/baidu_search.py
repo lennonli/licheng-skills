@@ -29,7 +29,7 @@ async def capture_page_pdf(page, output_path, title):
 async def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("company_name", nargs='?', default="深圳市精诚达电路科技股份有限公司")
+    parser.add_argument("company_name")
     parser.add_argument("--headless", action="store_true", help="Run in headless mode")
     args = parser.parse_args()
     

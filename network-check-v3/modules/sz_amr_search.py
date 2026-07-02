@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright
 async def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("company_name", nargs='?', default="深圳市精诚达电路科技股份有限公司")
+    parser.add_argument("company_name")
     parser.add_argument("output", nargs='?', default=None)
     parser.add_argument("--headful", action="store_true", help="Run in headful mode")
     args = parser.parse_args()
@@ -115,7 +115,19 @@ async def main():
             format="A4",
             print_background=True,
             display_header_footer=True,
-            margin={"top": "1.5cm", "right": "1cm", "bottom": "1cm", "left": "1cm"}
+            margin={"top": "1.5cm", "right": "1cm", "bottom": "1cm", "left": "1cm"},
+            header_template="""
+                <div style="font-size:8px; width:100%; margin: 0 0.5cm; display: flex; justify-content: space-between; font-family: sans-serif; color: #333;">
+                    <span class="date"></span>
+                    <span class="title"></span>
+                </div>
+            """,
+            footer_template="""
+                <div style="font-size:8px; width:100%; margin: 0 0.5cm; display: flex; justify-content: space-between; font-family: sans-serif; color: #333;">
+                    <span class="url"></span>
+                    <span style="white-space: nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
+                </div>
+            """,
         )
         
         print("Done!")

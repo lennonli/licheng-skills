@@ -82,6 +82,18 @@ async def save_pdf(page, output_pdf):
         print_background=True,
         display_header_footer=True,
         margin={"top": "1cm", "right": "1cm", "bottom": "1cm", "left": "1cm"},
+        header_template="""
+            <div style="font-size:8px; width:100%; margin: 0 0.5cm; display: flex; justify-content: space-between; font-family: sans-serif; color: #333;">
+                <span class="date"></span>
+                <span class="title"></span>
+            </div>
+        """,
+        footer_template="""
+            <div style="font-size:8px; width:100%; margin: 0 0.5cm; display: flex; justify-content: space-between; font-family: sans-serif; color: #333;">
+                <span class="url"></span>
+                <span style="white-space: nowrap;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
+            </div>
+        """,
     )
 
 

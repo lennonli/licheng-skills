@@ -25,13 +25,13 @@ python3 -m playwright install chromium
 If the task is being run in Codex Desktop and a platform has CAPTCHA or bot checks, prefer headful mode so the user can intervene in the browser window:
 
 ```bash
-python3 run_check.py "深圳市精诚达电路科技股份有限公司" --platform all --output-dir ./outputs
+python3 run_check.py "<company name>" --platform all --output-dir ./outputs
 ```
 
 For unattended smoke tests or platforms that work without manual CAPTCHA, use headless mode:
 
 ```bash
-python3 run_check.py "深圳市精诚达电路科技股份有限公司" --platform baidu --headless --output-dir ./outputs
+python3 run_check.py "<company name>" --platform baidu --headless --output-dir ./outputs
 ```
 
 ## Main Command
@@ -82,5 +82,7 @@ Options:
 ## Safety And Evidence Handling
 
 The scripts open public web pages and write generated PDFs to the output directory. They do not request credentials and should not access cookies, browser profiles, SSH keys, or cloud credentials.
+
+Generated evidence PDFs must preserve normal Chrome-style print headers and footers: print date, page title, source URL, page number, and total page count. When using Playwright, use `display_header_footer=True` and explicit header/footer templates if the default browser output does not show all of these fields.
 
 Keep generated PDF evidence in the matter workspace. Do not reuse downloaded reports across unrelated clients or matters.
