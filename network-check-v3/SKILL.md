@@ -1,6 +1,6 @@
 ---
 name: network-check-v3
-description: Use this skill when the user asks Codex to perform Chinese enterprise network due diligence, company risk checks, credit checks, regulatory penalty searches, enforcement record checks, tax dishonesty checks, Credit China report downloads, customs credit checks, SAFE foreign-exchange penalty checks, CSRC dishonesty searches, SAMR or Shenzhen AMR administrative penalty searches, or Baidu risk keyword searches. This skill should trigger for Chinese legal due diligence workflows, IPO/legal memo background checks, contract counterparty risk checks, and requests like "网络核查", "主体核查", "企业信用核查", "风险检索", "行政处罚查询", "失信记录查询", or "帮我查一下这家公司".
+description: Use this skill when the user asks Codex to perform Chinese enterprise network due diligence, company risk checks, credit checks, regulatory penalty searches, enforcement record checks, tax dishonesty checks, Credit China report downloads, customs credit checks, SAFE foreign-exchange penalty checks, CSRC dishonesty searches, SAMR or Shenzhen AMR administrative penalty searches, Shanghai Stock Exchange disciplinary/regulatory searches, or Baidu risk keyword searches. This skill should trigger for Chinese legal due diligence workflows, IPO/legal memo background checks, contract counterparty risk checks, and requests like "网络核查", "主体核查", "企业信用核查", "风险检索", "行政处罚查询", "上交所纪律处分", "失信记录查询", or "帮我查一下这家公司".
 ---
 
 # Network Check V3
@@ -56,6 +56,7 @@ Options:
 - `chinatax`: major tax violation dishonesty records.
 - `creditchina`: Credit China search and credit report download.
 - `samr`: SAMR administrative penalty decision disclosure site.
+- `sse`: Shanghai Stock Exchange disciplinary/regulatory source pages and site keyword search.
 - `safe`: SAFE foreign-exchange administrative penalty information. Requires a unified social credit code.
 - `csrc`: CSRC securities and futures market dishonesty record platform. Provide `--id-num` when available.
 - `procuratorate`: 12309 China Procuratorate public search.
@@ -77,6 +78,7 @@ Options:
 - CSRC may require a complete identity/certificate number. If unavailable, report the limitation instead of relying on placeholder values.
 - Customs and court checks often require manual CAPTCHA handling.
 - Credit China downloads may require verification; if a download does not complete, distinguish page-level search results from a locally saved PDF.
+- SSE checks generate source-page and keyword-search PDF evidence only. Do not state that SSE has no disciplinary record unless the printed search result page clearly shows the keyword and no matching/relevant result.
 - Several official sites change selectors frequently. If a module fails, inspect the saved screenshot/debug output and re-run that platform only.
 
 ## Safety And Evidence Handling
