@@ -21,6 +21,7 @@ PLATFORMS = {
     "samr": {"script": "samr_search.py", "mode_flag": "headful"},
     "sz-amr": {"script": "sz_amr_search.py", "mode_flag": "headful"},
     "baidu": {"script": "baidu_search.py", "mode_flag": "headless"},
+    "sse": {"script": "sse_search.py", "mode_flag": "headless"},
 }
 
 def looks_like_uscc(value):
