@@ -8,14 +8,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: notify-ai-site-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   notify:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.AI_SITE_DISPATCH_TOKEN }}
+    timeout-minutes: 5
     steps:
       - name: Trigger licheng-ai-site deployment
+        env:
+          GH_TOKEN: ${{ secrets.AI_SITE_DISPATCH_TOKEN }}
         run: |
+          test -n "$GH_TOKEN"
           gh api \
             --method POST \
             repos/lennonli/licheng-ai-site/dispatches \
