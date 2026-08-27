@@ -1,0 +1,4 @@
+{
+  "drive_root": "~/Library/CloudStorage/GoogleDrive-<账号>/我的云端硬盘/<Drive目标文件夹>",
+  "default_to": "<发件授权邮箱自身，作为默认收件人>"
+}
