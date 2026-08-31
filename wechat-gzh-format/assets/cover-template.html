@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>公众号封面 · 【主题】</title>
+<!-- 封面为本地截图用（截图后作为图片上传公众号），无内联样式约束 -->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 900px; height: 383px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #e4f3cf 0%, #eaf4dc 45%, #f4f7ef 100%);
+  }
+  /* 右上角绿色光晕装饰（对应站点 hero） */
+  .glow {
+    position: absolute; right: -90px; top: -120px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(159,232,112,.55) 0%, rgba(159,232,112,0) 68%);
+  }
+  .glow2 {
+    position: absolute; left: -70px; bottom: -140px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,168,111,.25) 0%, rgba(74,168,111,0) 70%);
+  }
+  /* 左侧竖向亮绿色条（对应站点金句卡左边框） */
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 383px; background: #9fe870; }
+
+  .wrap { position: relative; height: 100%; padding: 44px 60px 36px 62px; display: flex; flex-direction: column; }
+  .tag {
+    display: inline-block; align-self: flex-start;
+    padding: 6px 16px; border-radius: 999px; background: #9fe870;
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 17px; letter-spacing: 3px; font-weight: bold; color: #0e3f22;
+  }
+  /* 标题区：固定两行高度，JS 按长度自动缩字号 */
+  #title {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden; margin-top: 10px;
+    font-size: 72px; line-height: 1.32; font-weight: 800; color: #17281d; letter-spacing: 1px;
+  }
+  .em { color: #0e6f3f; }  /* 标题中需要强调的词用此 span 包裹 */
+  .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px; border-top: 2px solid rgba(14,111,63,.18);
+  }
+  .foot .name { font-size: 20px; color: #5a6b5f; letter-spacing: 1px; }
+  .foot .mono {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 15px; letter-spacing: 3px; font-weight: bold; color: #0e6f3f;
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+  <div class="bar"></div>
+  <div class="wrap">
+    <span class="tag">【系列/栏目名·全大写】</span>
+    <div id="title">【标题文字，强调词用 &lt;span class="em"&gt; 包裹】</div>
+    <div class="foot">
+      <span class="name">李成律师 · 法律AI工作站</span>
+      <span class="mono">LEGAL AI WORKSPACE</span>
+    </div>
+  </div>
+  <script>
+    // 标题超过容器（高2行/宽一行）时逐级缩小字号，下限34px
+    function fit() {
+      const el = document.getElementById('title');
+      let size = 72;
+      el.style.fontSize = size + 'px';
+      while ((el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2) && size > 34) {
+        size -= 2;
+        el.style.fontSize = size + 'px';
+      }
+    }
+    window.addEventListener('load', fit);
+  </script>
+</body>
+</html>
