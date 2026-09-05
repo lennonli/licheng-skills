@@ -1,5 +1,10 @@
 ---
 name: ipo-kb
+version: 1.0.0
+display_name: IPO问询案例知识库检索
+display_name_en: IPO Inquiry Case KB Search
+description_zh: 本地检索IPO与挂牌审核问询案例知识库（2023-2026四年度，1,600+份案例）。按标签、板块、律所、代码、上市日期筛选，支持全文关键词检索、统一加权排序与案例原文阅读；首次运行自动克隆知识库，免配置装完即用，定期 update 同步更新。
+description_en: Search the local IPO/NEEQ listing-review inquiry-case knowledge base (2023-2026, 1,600+ cases). Filter by tag, board, law firm, ticker or listing date; full-text search, unified relevance ranking and full case-text reading. Auto-clones the knowledge base on first run — zero-config install, with an update command for periodic sync.
 description: |
   IPO与挂牌审核问询案例库检索（本地私有知识库，2023-2026四个年度共1,628份）。
   当用户办理或研究北交所/科创板/创业板/沪深主板IPO、新三板挂牌项目，遇到具体审核
