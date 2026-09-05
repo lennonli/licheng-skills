@@ -17,7 +17,9 @@ description: |
 三、重点法律问题详述（每问含**问询要点**/**回复与核查要点**/**执业提示**）。
 
 知识库根目录解析顺序：环境变量 `IPO_KB_ROOT` → `~/Documents/Macbook-pro项目/19-IPO问询案例知识库`
-→ `~/ipo-inquiry-kb`。未有克隆时执行：`git clone https://github.com/lennonli/ipo-inquiry-kb.git ~/ipo-inquiry-kb`。
+→ `~/ipo-inquiry-kb`。**本机没有知识库时，kb_search.py 任意子命令首次运行会自动
+`git clone https://github.com/lennonli/ipo-inquiry-kb.git ~/ipo-inquiry-kb`**（约百余 MB，
+无需手动克隆；克隆失败会给出排查指引）。
 
 | kb | monorepo 子目录 | 规模 |
 | --- | --- | --- |
@@ -34,7 +36,7 @@ description: |
 ```bash
 S=~/.agents/skills/ipo-kb/kb_search.py
 
-# 0. 先拉新保持同源（四仓 git pull）
+# 0. 同步知识库最新内容（单仓 git pull；本库定期更新）
 python3 $S update
 
 # 1. 统一检索：元数据+正文加权排序，带命中摘录（对应 MCP search）

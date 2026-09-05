@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
-"""IPO问询案例库本地统一检索——与 legal-knowledge MCP 五工具同源等价。
+"""IPO问询案例库本地统一检索——与 legal-knowledge MCP 检索同源等价。
 
-kb 目录映射：
-  ipo     -> ~/Documents/Macbook-pro项目/19-IPO问询案例知识库        (2026年度)
-  ipo2023 -> ~/Documents/Macbook-pro项目/19-IPO问询案例知识库-2023
-  ipo2024 -> ~/Documents/Macbook-pro项目/19-IPO问询案例知识库-2024
-  ipo2025 -> ~/Documents/Macbook-pro项目/19-IPO问询案例知识库-2025
+数据源：GitHub 主仓 lennonli/ipo-inquiry-kb（monorepo，按年度子目录）。
+知识库根目录解析顺序：环境变量 IPO_KB_ROOT → 常见克隆位置 → 默认 ~/ipo-inquiry-kb。
+**首次运行时若本机没有知识库，会自动 git clone 到默认位置**（无需手动克隆）。
 
 用法：
-  kb_search.py list                                   # 列出各知识库及案例数
-  kb_search.py search "关键词1 关键词2" [过滤参数]      # 统一检索（元数据+正文，MCP search 等价）
-  kb_search.py meta   --tag 股权代持 --board 北交所    # 仅元数据筛选（MCP search_kb 等价）
-  kb_search.py full   "关键词1 关键词2" [--kb ipo2023] # 仅正文全文（MCP search_fulltext 等价）
-  kb_search.py read   ipo2023 cases/xxx.md             # 读案例原文（MCP read_source 等价）
-  kb_search.py update                                  # git pull 四仓保持与 GitHub/MCP 同步
+  kb_search.py list                                   # 列出各知识库及案例数（首次运行自动克隆知识库）
+  kb_search.py search "关键词1 关键词2" [过滤参数]      # 统一检索（元数据+正文加权排序）
+  kb_search.py meta   --tag 股权代持 --board 北交所    # 仅元数据筛选
+  kb_search.py full   "关键词1 关键词2" [--kb ipo2023] # 仅正文全文（多关键词同文命中）
+  kb_search.py read   ipo2023 cases/xxx.md             # 读案例原文
+  kb_search.py update                                  # git pull 同步知识库最新内容
 
 过滤参数（search/meta 共用）：--tag --board --lawyer --code --company --year --limit
 """
 import argparse, json, os, subprocess, sys
 
+KB_REPO_URL = "https://github.com/lennonli/ipo-inquiry-kb.git"
+
+
 def _resolve_kb_root():
-    """知识库根目录解析顺序：环境变量 IPO_KB_ROOT → 常见克隆位置。"""
+    """知识库根目录解析顺序：环境变量 IPO_KB_ROOT → 常见克隆位置 → 默认克隆目标。"""
     env = os.environ.get("IPO_KB_ROOT")
-    if env and os.path.isdir(os.path.expanduser(env)):
+    if env:
         return os.path.expanduser(env)
     for cand in (
         "~/Documents/Macbook-pro项目/19-IPO问询案例知识库",
@@ -41,6 +42,29 @@ REPOS = {
     "ipo2024": "2024",
     "ipo2025": "2025",
 }
+
+
+def kb_ready():
+    return os.path.isdir(os.path.join(KB_ROOT, "2026"))
+
+
+def ensure_kb():
+    """首次运行自动克隆知识库；目录异常时给出明确指引。"""
+    if kb_ready():
+        return
+    if os.path.isdir(KB_ROOT) and os.listdir(KB_ROOT):
+        print(f"[初始化失败] {KB_ROOT} 已存在但不是有效的知识库目录（缺少 2026/ 子目录）。")
+        print("  请清理该目录，或设置环境变量 IPO_KB_ROOT 指向知识库根目录后重试。")
+        sys.exit(2)
+    print(f"[首次运行] 本机尚未安装知识库，正在自动克隆到 {KB_ROOT} ……")
+    print("  （仓库约百余 MB，视网络需数分钟，请耐心等待）")
+    os.makedirs(KB_ROOT, exist_ok=True)
+    r = subprocess.run(["git", "clone", KB_REPO_URL, KB_ROOT])
+    if r.returncode != 0 or not kb_ready():
+        print("[初始化失败] 自动克隆未完成。请检查：git 是否安装、能否访问 github.com。")
+        print(f"  也可手动执行：git clone {KB_REPO_URL} {KB_ROOT}")
+        sys.exit(2)
+    print("[初始化完成] 知识库已就位，后续运行直接可用；定期运行 update 子命令同步更新。")
 
 
 def load_index(kb):
@@ -187,11 +211,11 @@ def cmd_read(args):
 def cmd_update(_):
     r = subprocess.run(["git", "-C", KB_ROOT, "pull", "--ff-only"], capture_output=True, text=True)
     line = (r.stdout or r.stderr).strip().splitlines()
-    print(f"monorepo: {line[-1] if line else ('OK' if r.returncode == 0 else '失败')}")
+    print(f"知识库: {line[-1] if line else ('OK' if r.returncode == 0 else '失败')}")
 
 
 def main():
-    ap = argparse.ArgumentParser(description="IPO问询案例库本地检索")
+    ap = argparse.ArgumentParser(description="IPO问询案例库本地检索（首次运行自动克隆知识库）")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("list").set_defaults(fn=cmd_list)
@@ -217,6 +241,7 @@ def main():
     sub.add_parser("update").set_defaults(fn=cmd_update)
 
     args = ap.parse_args()
+    ensure_kb()
     args.fn(args)
 
 
