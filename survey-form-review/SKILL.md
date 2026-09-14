@@ -1,6 +1,11 @@
 ---
 name: survey-form-review
+version: 1.0.0
+display_name: 董监高调查表复核
+display_name_en: Survey Form Review
 description: 董监高/自然人股东/核心技术人员调查表复核（IPO/新三板申报用）。当用户要求复核、核对、检查、批量核查董监高调查表、股东调查表、自然人调查表、核心技术人员调查表，或提到调查表报告期改口、留空未填、身份证学历工作经历核查、单位全称核查、对外任职投资核查、近亲属及其控制企业核查、夫妻/亲属互填一致性时使用。先跑本地规则脚本（含批次内跨表交叉核对），再用企查查/元典MCP比对公开信息，最后与底稿勾稽并输出分级问题清单。
+description_zh: 董监高/自然人股东/核心技术人员调查表复核（IPO/新三板申报用）。当用户要求复核、核对、检查、批量核查董监高调查表、股东调查表、自然人调查表、核心技术人员调查表，或提到调查表报告期改口、留空未填、身份证学历工作经历核查、单位全称核查、对外任职投资核查、近亲属及其控制企业核查、夫妻/亲属互填一致性时使用。先跑本地规则脚本（含批次内跨表交叉核对），再用企查查/元典MCP比对公开信息，最后与底稿勾稽并输出分级问题清单。
+description_en: Review and verification of survey forms for natural-person shareholders, directors, supervisors, senior executives and core technicians in IPO/NEEQ listing filings. Use when the user asks to review, check or batch-verify such survey forms, or mentions reporting-period date updates, blank fields, ID number / education / employment history checks, employer full-name verification, outside positions and investments, close relatives and their controlled companies, or spousal / relative cross-form consistency. Runs a local rule-checker script first (including cross-form consistency checks within the batch), then verifies public registry data via company-information MCP, and finally reconciles against working papers to output a graded issue list.
 ---
 
 # 董监高股东调查表复核
