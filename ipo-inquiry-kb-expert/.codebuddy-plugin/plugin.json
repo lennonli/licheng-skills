@@ -1,0 +1,74 @@
+{
+  "name": "ipo-inquiry-kb-expert",
+  "version": "1.0.0",
+  "description": "IPO listing-review inquiry case and securities regulation research expert: searches 1,600+ IPO/NEEQ inquiry cases (2023-2026) and 1,000+ securities rules to deliver inquiry focus points, response approaches and evidence-chain ideas",
+  "author": {
+    "name": "李成",
+    "email": "your-email@example.com"
+  },
+  "homepage": "https://ai.licheng.uk/kbskill/",
+  "license": "MIT",
+  "keywords": [
+    "IPO",
+    "问询回复",
+    "证券法规",
+    "北交所",
+    "新三板",
+    "法律尽调"
+  ],
+  "agents": [
+    "./agents/ipo-kb-expert.md"
+  ],
+  "skills": [
+    "./skills/ipo-kb"
+  ],
+  "expertType": "agent",
+  "agentName": "ipo-kb-expert",
+  "displayName": {
+    "en": "IPO Inquiry Case Expert",
+    "zh": "IPO问询案例专家"
+  },
+  "profession": {
+    "en": "IPO Review Inquiry & Securities Rules Researcher (Li Cheng Lawyer Edition)",
+    "zh": "IPO审核问询案例与证券法规检索专家（李成律师版本）"
+  },
+  "displayDescription": {
+    "en": "Searches 1,600+ IPO/NEEQ listing-review inquiry cases (2023-2026) and 1,000+ securities rules, delivering inquiry focus points, response approaches and evidence-chain ideas transferable to your project.",
+    "zh": "检索四年度1600余份IPO与挂牌审核问询案例及千余部证券法规，输出问询要点、回复口径与证据链思路"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "11-SecurityCompliance",
+  "defaultInitPrompt": {
+    "zh": "查股权代持还原的同类审核问询案例",
+    "en": "Find precedent review cases on nominee shareholding restoration"
+  },
+  "plugin": "ipo-inquiry-kb-expert",
+  "tags": [
+    {
+      "en": "IPO Inquiry Cases",
+      "zh": "IPO问询案例"
+    },
+    {
+      "en": "Securities Rules",
+      "zh": "证券法规检索"
+    },
+    {
+      "en": "Response Approach",
+      "zh": "审核回复口径"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Find precedent review cases on nominee shareholding restoration",
+      "zh": "查股权代持还原的同类审核问询案例"
+    },
+    {
+      "en": "Inquiry focus and response approach on horizontal competition",
+      "zh": "同业竞争问题的问询要点与回复口径"
+    },
+    {
+      "en": "Price-stabilization provisions in BSE listing rules",
+      "zh": "北交所上市规则中稳定股价的相关规定"
+    }
+  ]
+}
