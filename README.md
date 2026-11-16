@@ -6,6 +6,7 @@
 
 | Skill | 说明 |
 |-------|------|
+| [**bazi-analysis**](./bazi-analysis/) | 八字排盘与命理解读 Skill，干支、节气、农历、真太阳时、大运一律由内置脚本计算（禁止手工推算），生成置顶白话版、每段解读附「怎么办」的 HTML 命书，支持时辰不详三柱盘与合婚合盘 |
 | [**cnipa-patent-evidence-archive**](./cnipa-patent-evidence-archive/) | 国家知识产权局 CNIPA 专利审查信息查询底稿归档 Skill，自动打开详情页并按面板导出带日期、网址、页码的证据 PDF |
 | [**cnipa-trademark-evidence-archive**](./cnipa-trademark-evidence-archive/) | 国家知识产权局 CNIPA 商标网上检索底稿归档 Skill，导出商标详情和流程页证据 PDF，并保留 Chrome 原生页眉页脚 |
 | [**company-preliminary-analysis**](./company-preliminary-analysis/) | 委托前公司初步分析报告 Skill，覆盖竞聘 IPO/常法法律顾问与专项业务前置三类场景，整合企查查资料包解析、多源在线检索、法律风险排查与 Word 报告生成 |
